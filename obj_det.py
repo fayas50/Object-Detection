@@ -27,7 +27,7 @@ def parse_arguments() -> argparse.Namespace:
 
 
 
-def jetson_rtsp_capture(uri, width, height, latency):
+def jetson_rtsp_capture(uri, latency, width, height):
     gst_str = ('rtspsrc location={} latency={} ! '
             'rtph264depay ! h264parse ! omxh264dec ! '
             'nvvidconv ! '
@@ -43,7 +43,7 @@ def main():
     frame_width = 1280
     frame_height = 720
 
-    cap = jetson_rtsp_capture("rtsp://admin:Admin123.@10.10.30.100:554/Streaming/Channels/101", width=1280, height=720, latency=200)
+    cap = jetson_rtsp_capture("rtsp://admin:Admin123.@10.10.30.100:554/Streaming/Channels/101", latency=200, width=1280, height=720)
 
 
     model = YOLO("yolov8n.pt")
